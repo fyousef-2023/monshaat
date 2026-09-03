@@ -1,0 +1,354 @@
+<title>خطوات دعم منشآت</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap');
+
+  :root{
+    direction: rtl;
+    --bg: #f7f5f0;
+    --surface: #ffffff;
+    --surface-2: #f0ede4;
+    --border: #e2ddd0;
+    --text: #22271f;
+    --text-muted: #5c6355;
+    --accent: #0d7a5f;
+    --accent-dark: #095c47;
+    --accent-tint: #e7f3ee;
+    --warn-bg: #fbeeea;
+    --warn-border: #c9502f;
+    --warn-text: #7a3016;
+    --chip-bg: #eef1e9;
+    --shadow: 0 1px 2px rgba(30,35,25,0.04), 0 6px 20px -8px rgba(30,35,25,0.10);
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg: #14170f;
+      --surface: #1b1f16;
+      --surface-2: #21261a;
+      --border: #313829;
+      --text: #ecebe3;
+      --text-muted: #a4ab98;
+      --accent: #35b892;
+      --accent-dark: #4fd0ac;
+      --accent-tint: #1c2b23;
+      --warn-bg: #2c1c14;
+      --warn-border: #d97350;
+      --warn-text: #f1c4ae;
+      --chip-bg: #232920;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 28px -10px rgba(0,0,0,0.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg: #14170f;
+    --surface: #1b1f16;
+    --surface-2: #21261a;
+    --border: #313829;
+    --text: #ecebe3;
+    --text-muted: #a4ab98;
+    --accent: #35b892;
+    --accent-dark: #4fd0ac;
+    --accent-tint: #1c2b23;
+    --warn-bg: #2c1c14;
+    --warn-border: #d97350;
+    --warn-text: #f1c4ae;
+    --chip-bg: #232920;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 28px -10px rgba(0,0,0,0.5);
+  }
+
+  *{ box-sizing: border-box; }
+  html, body{ direction: rtl; }
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  h1, h2, h3{
+    font-family: "Cairo", "Segoe UI", Tahoma, sans-serif;
+    text-wrap: balance;
+    color: var(--text);
+    margin: 0;
+  }
+  .page{
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* header */
+  .eyebrow{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--accent-dark);
+    background: var(--accent-tint);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+  }
+  header h1{
+    font-size: clamp(28px, 4vw, 36px);
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  header p.lead{
+    color: var(--text-muted);
+    font-size: 16px;
+    max-width: 58ch;
+    margin: 0;
+  }
+  .meta{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .meta .dot{ width: 4px; height: 4px; border-radius: 50%; background: var(--text-muted); }
+
+  /* sections */
+  section{ margin-top: 44px; }
+  .section-head{
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .section-num{
+    font-family: "Cairo", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--accent-dark);
+    background: var(--accent-tint);
+    border-radius: 8px;
+    padding: 3px 9px;
+    font-variant-numeric: tabular-nums;
+  }
+  h2{ font-size: 21px; font-weight: 700; }
+  .card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 24px;
+    box-shadow: var(--shadow);
+  }
+  .card + .card{ margin-top: 14px; }
+  p{ margin: 0 0 12px; color: var(--text); }
+  p:last-child{ margin-bottom: 0; }
+  .role-owner{
+    font-family: "Cairo", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--accent-dark);
+    text-transform: none;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  /* link chip */
+  .linkcard{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: var(--chip-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .linkcard:hover{ border-color: var(--accent); }
+  .linkcard .ic{
+    flex: 0 0 auto;
+    width: 34px; height: 34px;
+    border-radius: 9px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .linkcard .body{ flex: 1; min-width: 0; }
+  .linkcard .title{ font-weight: 600; font-size: 14.5px; }
+  .linkcard .url{
+    font-size: 12.5px;
+    color: var(--text-muted);
+    direction: ltr;
+    text-align: right;
+    unicode-bidi: plaintext;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .linkcard .go{ flex: 0 0 auto; color: var(--text-muted); font-size: 18px; }
+
+  /* steps */
+  ol.steps{
+    list-style: none;
+    margin: 18px 0 0;
+    padding: 0;
+    counter-reset: step;
+  }
+  ol.steps li{
+    counter-increment: step;
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-top: 1px solid var(--border);
+  }
+  ol.steps li:first-child{ border-top: none; padding-top: 4px; }
+  ol.steps li::before{
+    content: counter(step);
+    font-family: "Cairo", sans-serif;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    flex: 0 0 auto;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+  }
+  ol.steps li .txt{ padding-top: 3px; }
+  ol.steps li code{
+    direction: ltr;
+    unicode-bidi: plaintext;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1px 7px;
+    font-size: 13px;
+    display: inline-block;
+  }
+
+  /* warning callout */
+  .warn{
+    margin-top: 18px;
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    display: flex;
+    gap: 14px;
+  }
+  .warn .ic{
+    flex: 0 0 auto;
+    font-size: 20px;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .warn .txt{ color: var(--warn-text); font-size: 15px; }
+  .warn .txt strong{ color: var(--warn-text); }
+
+  footer{
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 12.5px;
+  }
+
+  @media (max-width: 480px){
+    .page{ padding: 32px 16px 64px; }
+    .card{ padding: 18px; }
+  }
+</style>
+
+<div class="page" dir="rtl" lang="ar">
+
+  <header>
+    <span class="eyebrow">📋 دليل داخلي — فريق نجاح العملاء</span>
+    <h1>خطوات دعم منشآت</h1>
+    <p class="lead">مرجع سريع لعملية دعم منشآت على اشتراك منصة رِواء: نبذة عن البرنامج، ودور موظف نجاح العملاء في متابعة تأكيد استلام الطلب.</p>
+    <div class="meta">
+      <span>آخر تحديث للمصدر: 7 أغسطس 2026</span>
+      <span class="dot"></span>
+      <span>المصدر: مركز مساعدة رِواء</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head">
+      <span class="section-num">نبذة</span>
+      <h2>ما هو دعم منشآت؟</h2>
+    </div>
+    <div class="card">
+      <p>دعم منشآت هو برنامج مقدَّم بالشراكة بين رِواء والهيئة العامة للمنشآت الصغيرة والمتوسطة (منشآت)، عبر منصة مزايا. يتيح البرنامج لأصحاب المنشآت المتناهية الصغر والصغيرة والمتوسطة — ممن لديهم سجل تجاري سعودي ساري — الحصول على خصم بقيمة 1,500 ريال مقدَّم من منشآت، بالإضافة إلى خصم إضافي من رِواء بنسبة 48٪، ليصل إجمالي الخصم إلى 63٪ حسب نوع الباقة. يشمل الدعم قطاعات التجزئة والمطاعم والمقاهي والخدمات.</p>
+      <a class="linkcard" href="https://help.rewaa.com/ar-SA/12672894-%D9%83%D9%8A%D9%81-%D8%AA%D8%B3%D8%AA%D9%81%D9%8A%D8%AF-%D9%85%D9%86-%D8%AF%D8%B9%D9%85-%D9%85%D9%86%D8%B4%D8%A2%D8%AA-%D8%B9%D9%84%D9%89-%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83-%D9%85%D9%86%D8%B5%D8%A9-%D8%B1%D9%90%D9%88%D8%A7%D8%A1" target="_blank" rel="noopener">
+        <span class="ic">📄</span>
+        <span class="body">
+          <span class="title">المقال الكامل — كيف تستفيد من دعم منشآت على اشتراك منصة رِواء</span>
+          <span class="url">help.rewaa.com/ar-SA/…/كيف-تستفيد-من-دعم-منشآت</span>
+        </span>
+        <span class="go">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="section-num">١</span>
+      <h2>دور موظف نجاح العملاء </h2>
+    </div>
+    <div class="card">
+      <span class="role-owner">المهمة</span>
+      <p>التواصل مع العملاء المدرَجين في الشيت لإبلاغهم بأنه سوف تصلهم رسالة من رِواء لتأكيد الطلب.</p>
+      <a class="linkcard" href="https://docs.google.com/spreadsheets/d/14QDBTOUqMiFp8M14dhsl9QRKTmfnRt150bPmPLjLzbI/edit?gid=0#gid=0" target="_blank" rel="noopener">
+        <span class="ic">📊</span>
+        <span class="body">
+          <span class="title">شيت متابعة عملاء دعم منشآت</span>
+          <span class="url">docs.google.com/spreadsheets/…</span>
+        </span>
+        <span class="go">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <span class="section-num">٢</span>
+      <h2>دور موظف نجاح العملاء</h2>
+    </div>
+    <div class="card">
+      <span class="role-owner">المهمة</span>
+      <p>فتح كيسات للموظفين بخصوص تأكيد استلام الطلب. يقوم الموظف بالاتصال على العميل ويطلب منه الدخول إلى منصة مزايا، أو مراجعة الرسالة الواردة من رِواء لتأكيد استلام الطلب.</p>
+
+      <span class="role-owner" style="margin-top: 8px;">خطوات تأكيد استلام الطلب (يتم شرحها للعميل أثناء الاتصال)</span>
+      <ol class="steps">
+        <li><span class="txt">سجّل الدخول على منصة مزايا عبر الرابط: <code>mazaya.monshaat.gov.sa</code></span></li>
+        <li><span class="txt">بعد فتح الرابط، قم بتسجيل الدخول (نفاذ).</span></li>
+        <li><span class="txt">اضغط على اسمك في أعلى الصفحة.</span></li>
+        <li><span class="txt">اضغط على «لوحة التحكم».</span></li>
+        <li><span class="txt">بالأسفل، اضغط على «تفاصيل الطلب» أمام طلب رِواء.</span></li>
+        <li><span class="txt">اضغط على «تأكيد استلام الطلب».</span></li>
+      </ol>
+
+      <a class="linkcard" href="https://mazaya.monshaat.gov.sa/" target="_blank" rel="noopener">
+        <span class="ic">🔗</span>
+        <span class="body">
+          <span class="title">منصة مزايا — تسجيل الدخول وتأكيد الاستلام</span>
+          <span class="url">mazaya.monshaat.gov.sa</span>
+        </span>
+        <span class="go">↗</span>
+      </a>
+    </div>
+
+    <div class="warn">
+      <span class="ic">⚠️</span>
+      <span class="txt"><strong>مهم:</strong> العميل الذي لا يُؤكّد استلام الطلب على منصة مزايا يدفع مبلغ 1,500 ريال، لأنه يكون قد استفاد من دعم منشآت — فعدم التأكيد يعني عدم إتمام الاستفادة من الخصم المستحق له.</span>
+    </div>
+  </section>
+
+  <footer>
+    مرجع داخلي لفريق نجاح العملاء —صادر عن قسم ضمان الجودة | Issued by the Quality Assurance Department
+تقرير مراحل CSM — V3 — سبتمبر 2026.
+  </footer>
+
+</div>
